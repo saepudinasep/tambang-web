@@ -3,6 +3,11 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\DataControl\dataApprove;
+use App\Models\Kendaraan\driver;
+use App\Models\Kendaraan\kendaraan;
+use App\Models\Pegawai\pegawai;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -12,11 +17,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        driver::factory(100)->create();
+        kendaraan::factory(100)->create();
+        pegawai::factory(100)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        $this->call([
+            Account\accountSeeder::class,
+            Account\roleSeeder::class,
+            Kantor\kantorSeeder::class,
+            JarakTambang\jarakTambangSeeder::class,
+            Tambang\tambangSeeder::class,
+        ]);
+
+        dataApprove::factory(200)->create();
     }
 }
