@@ -21,4 +21,4 @@ Route::get('/', function () {
 Auth::routes();
 
 // \App\Http\Controllers\Auth\LoginController@logout
-Route::get('/logout', '');
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
