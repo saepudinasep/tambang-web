@@ -112,11 +112,11 @@
                                         </g>
                                     </svg>
                                 </span>
-                                <span class="app-brand-text demo text-body fw-bolder">Tambangin</span>
+                                <span class="app-brand-text demo text-body fw-bolder">Tambang Web</span>
                             </a>
                         </div>
                         <!-- /Logo -->
-                        <h4 class="mb-2">Welcome to Tambangin! 👋</h4>
+                        <h4 class="mb-2">Welcome to Tambang Web! 👋</h4>
                         <p class="mb-1">
                             Please sign-in to your account and start the
                             adventure
