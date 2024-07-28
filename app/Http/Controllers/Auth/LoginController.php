@@ -7,6 +7,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+// use Auth;
 use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller
@@ -20,7 +21,7 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function logout(Request $request)
+    public function login(Request $request)
     {
         $input = $request->all();
         $validator = Validator::make($input, [
@@ -53,5 +54,16 @@ class LoginController extends Controller
             Auth::logout();
             return redirect()->route('login')->with('error', 'username or password is incorrect');
         }
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        return redirect()->route('login')->with('success', 'Login Successfully');
+    }
+
+    public function showLoginForm()
+    {
+        return view('auth.login');
     }
 }
