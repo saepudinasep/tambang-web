@@ -6,7 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Service\admin\DataControl\dataApproveController;
 
 // 'index'
-Route::get('/dashboard', [DashboardController::class, ''])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::resource('/data-approve', dataApproveController::class);
 // 'selesai'
 Route::post('/data-approve/selesai/{dataApprove}', [dataApproveController::class, ''])->name('data-approve.selesai');

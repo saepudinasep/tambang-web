@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-// use Auth;
+// use Illuminate\Support\Facades\Auth;
+use Auth;
 use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller
@@ -34,13 +34,15 @@ class LoginController extends Controller
         ]);
 
         if ($validator->fails()) {
-            toastr()->error('username or password is incorrect');
+            toastr()->error('username or password is incorrect validator');
             return redirect()->route('login');
         }
 
         // login with email or username
         $login = request()->input('login');
         $field = filter_var($login, FILTER_VALIDATE_EMAIL) ? 'email' : 'name';
+        // var_dump($field);
+        // return;
         if (auth()->attempt(array($field => $input['login'], 'password' => $input['password']))) {
             $role = auth()->user()->role;
 
@@ -48,17 +50,17 @@ class LoginController extends Controller
                 return redirect()->route(auth()->user()->getRole->nama_role . '.dashboard')->with('success', 'Login Successfully');
             } else {
                 auth()->logout();
-                return redirect()->route('login')->with('error', 'username or password is incorrect');
+                return redirect()->route('login')->with('error', 'username or password is incorrect isset');
             }
         } else {
-            Auth::logout();
-            return redirect()->route('login')->with('error', 'username or password is incorrect');
+            auth()->logout();
+            return redirect()->route('login')->with('error', 'username or password is incorrect else isset');
         }
     }
 
     public function logout(Request $request)
     {
-        Auth::logout();
+        auth()->logout();
         return redirect()->route('login')->with('success', 'Login Successfully');
     }
 
